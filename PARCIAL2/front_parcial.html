@@ -1,0 +1,68 @@
+<h3>Registrar vehículo</h3>
+<div class="row">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4">
+        <div [hidden]="submitted" style="width: 400px;">
+            <form [formGroup]="studentsaveform" #savestudent (ngSubmit)="saveStudent(savestudent)">
+                <div class="form-group">
+                    <label for="vehiculo_placa">Placa</label>
+                    <input type="text" class="form-control" formControlName="vehiculo_placa" data-toggle="tooltip" data-placement="right" title="Enter Vehículo Placa">
+                    <div class="alert alert-danger" *ngIf="vehiculo_placa.touched && vehiculo_placa.invalid" style="margin-top: 5px;">
+                        <span *ngIf="vehiculo_placa.errors.required">Placa es requerida</span>
+                        <span *ngIf="vehiculo_placa.errors.minlength">Error de longitud</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="vehiculo_entrada">Hora entrada</label>
+                    <input type="text" class="form-control" formControlName="vehiculo_entrada" data-toggle="tooltip" data-placement="right" title="Enter Vehículo Entrada">
+                    <div class="alert alert-danger" *ngIf="vehiculo_entrada.touched && vehiculo_entrada.invalid" style="margin-top: 5px;">
+                        <span *ngIf="vehiculo_entrada.errors.required">La hora de entrada es requerida</span>
+                        <span *ngIf="vehiculo_entrada.errors.number">Entrada no válida</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="vehiculo_salida">Hora salida</label>
+                    <input type="text" class="form-control" formControlName="vehiculo_salida" data-toggle="tooltip" data-placement="right" title="Enter Vehículo Salida">
+                    <div class="alert alert-danger" *ngIf="vehiculo_salida.touched && vehiculo_salida.invalid" style="margin-top: 5px;">
+                        <span *ngIf="vehiculo_salida.errors.required">La hora de salida es requerida</span>
+                        <span *ngIf="vehiculo_salida.errors.number">Salida no válida</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="vehiculo_ubicacion">Ubicación</label>
+                    <input type="text" class="form-control" formControlName="vehiculo_ubicacion" data-toggle="tooltip" data-placement="right" title="Enter Vehículo Ubicación">
+                    <div class="alert alert-danger" *ngIf="vehiculo_ubicacion.touched && vehiculo_ubicacion.invalid" style="margin-top: 5px;">
+                        <span *ngIf="vehiculo_ubicacion.errors.required">La ubicación es requerida</span>
+                        <span *ngIf="vehiculo_ubicacion.errors">Ubicación no válida</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="vehiculo_tipo">Tipo de vehículo</label>
+                    <select class="form-control" formControlName="vehiculo_tipo" data-toggle="tooltip" data-placement="right" title="Select Vehículo Tipo">
+                        <option value="null">-- Seleccione Tipo de Vehículo --</option>
+                        <option value="Carro">Carro</option>
+                        <option value="Motocicleta">Motocicleta</option>
+                        <option value="Cicla">Cicla</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-success">Guardar</button>
+            </form>
+        </div>
+    </div>
+    <div class="col-sm-4"></div>
+</div>
+<div class="row">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4">
+        <div [hidden]="!submitted">
+            <h4>Agregado exitosamente!</h4>
+            <button (click)="addStudentForm()" class="btn btn-primary">Agregar otro vehículo</button>
+        </div>
+    </div>
+    <div class="col-sm-4"></div>
+</div>

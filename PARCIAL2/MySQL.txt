@@ -1,0 +1,44 @@
+CREATE DATABASE parqueaderof;
+USE login_example;
+-- Crear la tabla "tipos_vehiculo" para almacenar los tipos de vehículo
+CREATE TABLE tipos_vehiculo (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    Nombre VARCHAR(50) NOT NULL
+);
+
+
+INSERT INTO tipos_vehiculo (Nombre) VALUES
+    ('Carro'),
+    ('Motocicleta'),
+    ('Cicla');
+
+
+CREATE TABLE roles (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    Nombre VARCHAR(50) NOT NULL
+);
+
+
+INSERT INTO roles (Nombre) VALUES
+    ('admin'),
+    ('usuario');
+
+
+CREATE TABLE usuarios (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    NombreUsuario VARCHAR(50) NOT NULL,
+    Contrasena VARCHAR(255) NOT NULL, -- Aquí se almacenará la contraseña en forma de hash y sal
+    RolID INT NOT NULL,
+    FOREIGN KEY (RolID) REFERENCES roles(ID)
+);
+
+
+CREATE TABLE vehiculos (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    Placa VARCHAR(6) NOT NULL,
+    HoraEntrada TIME NOT NULL,
+    HoraSalida TIME, -- Esto puede ser NULL si el vehículo aún no ha salido
+    Ubicacion VARCHAR(100) NOT NULL,
+    TipoVehiculoID INT NOT NULL,
+    FOREIGN KEY (TipoVehiculoID) REFERENCES tipos_vehiculo(ID)
+);
